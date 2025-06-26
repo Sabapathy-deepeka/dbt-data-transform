@@ -12,14 +12,6 @@ Welcome to your new dbt project!
 - **Cloud Storage:** Amazon S3
 - **Data Warehouse:** Snowflake
 
----
-### Using the starter project
-
-Try running the following commands:
-- dbt run
-- dbt test
-
----
 
 ### DBT Core
 
