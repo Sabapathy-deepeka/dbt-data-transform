@@ -1,4 +1,4 @@
-# DBT Data Pipeline using S3 and Snowflake
+# DBT Data Pipeline
 
 ---
 
