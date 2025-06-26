@@ -1,19 +1,57 @@
-Welcome to your new dbt project!
-
-
 # DBT Data Pipeline using S3 and Snowflake
-
 
 ---
 
-## Overview
+## Project Overview
 
 - **Data Source:** [MovieLens dataset](https://grouplens.org/datasets/movielens/)
 - **Cloud Storage:** Amazon S3
 - **Data Warehouse:** Snowflake
-
+- **Data Transformation:** DBT
 
 ### DBT Core
+
+# Install dbt for Snowflake
+pip install dbt-snowflake==1.9.0
+
+# Create the .dbt configuration directory (Linux/Mac)
+mkdir ~/.dbt
+
+# Create the .dbt configuration directory (Windows)
+mkdir userprofile\.dbt
+
+# Initialize a new dbt project
+dbt init dbt-project-name
+
+# Run all models
+dbt run
+
+# Run a specific model by filename
+dbt run --model name.sql
+
+# Run a specific model using --select
+dbt run --select name.sql
+
+# Seed your database with CSV files located in the data/ directory
+dbt seed
+
+# Install dependencies listed in packages.yml
+dbt deps
+
+# Run snapshot scripts to capture slowly changing dimensions
+dbt snapshot
+
+# Run tests on your models
+dbt test
+
+# Generate dbt documentation
+dbt docs generate
+
+# Serve the generated documentation locally (view in browser)
+dbt docs serve  # to view the catalog
+
+# Compile your dbt project (generate SQL files in target/ directory)
+dbt compile
 
 ### Models
 
@@ -22,13 +60,54 @@ Materializations:
 - Tables - New data in underlying source table is not automatically added, could be fast/slow depending on complexity
 - Incremental - Allows to insert/update records since the last time model was run.
 - Ephemeral - Not built into database(No need for table/views), instead write a logic using CTE and reuse it with the model identifier.
-- Materialized Views - Stores the data, runs the query on top of source so we also get updated    latest records.(Combination of views and tables)
-					 You can also do incremental loading in materialized views.
+- Materialized Views - Stores the data, runs the query on top of source so we also get updated latest records.(Combination of views and tables)
+		       You can also do incremental loading in materialized views.
 
 ### Seeds
+
 Seeds are utilized to quickly create a table from the local file.
 
-## Steps
+### Snapshots
+
+Capture point-in-time records of data for slowly changing dimensions.
+
+### Testing
+
+Test for assertions about your data (e.g., uniqueness, non-null)
+
+models:
+  - name: dim_users
+    description: "User and account information"
+    columns:
+      - name: user_id
+        description: "The primary key for this table"
+        data_tests:
+          - unique
+          - not_null
+
+### Documentation
+
+To create documentation utilize `dbt docs generate` and to view the catalog use `dbt docs serve`
+We can create a documentation for our dbt project and also view the lineage graph.
+<img width="713" alt="image" src="https://github.com/user-attachments/assets/a66944a8-1ccb-4538-9db3-1c20c5012a84" />
+
+
+### Macros
+
+Reusable code blocks written in DBT.
+
+{% macro no_nulls_in_columns(model) %}
+    SELECT * FROM {{ model }}
+    WHERE
+        {% for col in adapter.get_columns_in_relation(model) %}
+            {{ col.column }} IS NULL OR
+        {% endfor %}
+        FALSE
+{% endmacro %}
+
+Utilize a macro like this {{no_nulls_in_columns(ref('fact_genome_scores'))}}
+
+## Steps to create snowflake user and tables
 
 ### 1. Create User and Role in Snowflake
 
@@ -106,7 +185,4 @@ COPY INTO table_name
 
 ### Resources:
 - Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+
