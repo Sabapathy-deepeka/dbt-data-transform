@@ -87,10 +87,8 @@ models:
 
 ### Documentation
 
-To create documentation utilize `dbt docs generate` and to view the catalog use `dbt docs serve`
-We can create a documentation for our dbt project and also view the lineage graph.
-http://localhost:8080/#!/overview/dbt_utils?g_v=1
-
+Create documentation using `dbt docs generate`
+View the catalog using `dbt docs serve
 
 ### Macros
 
