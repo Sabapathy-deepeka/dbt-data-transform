@@ -74,6 +74,7 @@ Capture point-in-time records of data for slowly changing dimensions.
 ### Testing
 
 Test for assertions about your data (e.g., uniqueness, non-null)
+```yaml
 
 models:
   - name: dim_users
@@ -85,6 +86,8 @@ models:
           - unique
           - not_null
 
+```
+
 ### Documentation
 
 Create documentation using `dbt docs generate`
@@ -93,7 +96,7 @@ View the catalog using `dbt docs serve
 ### Macros
 
 Reusable code blocks written in DBT.
-
+```sql
 {% macro no_nulls_in_columns(model) %}
     SELECT * FROM {{ model }}
     WHERE
@@ -103,8 +106,12 @@ Reusable code blocks written in DBT.
         FALSE
 {% endmacro %}
 
-Utilize a macro like this {{no_nulls_in_columns(ref('fact_genome_scores'))}}
+```
+Utilize a macro 
+```sql
+{{no_nulls_in_columns(ref('fact_genome_scores'))}}
 
+```
 ## Steps to create snowflake user and tables
 
 ### 1. Create User and Role in Snowflake
