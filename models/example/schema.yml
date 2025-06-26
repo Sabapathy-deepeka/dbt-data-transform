@@ -2,10 +2,10 @@
 version: 2
 
 models:
-  - name: my_first_dbt_model
-    description: "A starter dbt model"
+  - name: dim_users
+    description: "User and account information"
     columns:
-      - name: id
+      - name: user_id
         description: "The primary key for this table"
         data_tests:
           - unique

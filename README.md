@@ -20,6 +20,22 @@ Try running the following commands:
 - dbt test
 
 ---
+
+### DBT Core
+
+### Models
+
+Materializations:
+- Views -  runs on top of source data, so will always have latest records.No additional data storage. Might be slow for complex queries.
+- Tables - New data in underlying source table is not automatically added, could be fast/slow depending on complexity
+- Incremental - Allows to insert/update records since the last time model was run.
+- Ephemeral - Not built into database(No need for table/views), instead write a logic using CTE and reuse it with the model identifier.
+- Materialized Views - Stores the data, runs the query on top of source so we also get updated    latest records.(Combination of views and tables)
+					 You can also do incremental loading in materialized views.
+
+### Seeds
+Seeds are utilized to quickly create a table from the local file.
+
 ## Steps
 
 ### 1. Create User and Role in Snowflake
