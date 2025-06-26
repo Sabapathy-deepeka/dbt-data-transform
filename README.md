@@ -56,7 +56,7 @@ dbt compile
 ### Models
 
 Materializations:
-- Views -  runs on top of source data, so will always have latest records.No additional data storage. Might be slow for complex queries.
+- Views -  Runs on top of source data, so will always have latest records.No additional data storage. Might be slow for complex queries.
 - Tables - New data in underlying source table is not automatically added, could be fast/slow depending on complexity
 - Incremental - Allows to insert/update records since the last time model was run.
 - Ephemeral - Not built into database(No need for table/views), instead write a logic using CTE and reuse it with the model identifier.
