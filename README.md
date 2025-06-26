@@ -11,46 +11,46 @@
 
 ### DBT Core
 
-# Install dbt for Snowflake
+#### Install dbt for Snowflake
 pip install dbt-snowflake==1.9.0
 
-# Create the .dbt configuration directory (Linux/Mac)
+#### Create the .dbt configuration directory (Linux/Mac)
 mkdir ~/.dbt
 
-# Create the .dbt configuration directory (Windows)
+#### Create the .dbt configuration directory (Windows)
 mkdir userprofile\.dbt
 
-# Initialize a new dbt project
+#### Initialize a new dbt project
 dbt init dbt-project-name
 
-# Run all models
+#### Run all models
 dbt run
 
-# Run a specific model by filename
+#### Run a specific model by filename
 dbt run --model name.sql
 
-# Run a specific model using --select
+#### Run a specific model using --select
 dbt run --select name.sql
 
-# Seed your database with CSV files located in the data/ directory
+#### Seed your database with CSV files located in the data/ directory
 dbt seed
 
-# Install dependencies listed in packages.yml
+#### Install dependencies listed in packages.yml
 dbt deps
 
-# Run snapshot scripts to capture slowly changing dimensions
+#### Run snapshot scripts to capture slowly changing dimensions
 dbt snapshot
 
-# Run tests on your models
+#### Run tests on your models
 dbt test
 
-# Generate dbt documentation
+#### Generate dbt documentation
 dbt docs generate
 
-# Serve the generated documentation locally (view in browser)
+#### Serve the generated documentation locally (view in browser)
 dbt docs serve  # to view the catalog
 
-# Compile your dbt project (generate SQL files in target/ directory)
+#### Compile your dbt project (generate SQL files in target/ directory)
 dbt compile
 
 ### Models
