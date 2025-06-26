@@ -89,7 +89,7 @@ models:
 
 To create documentation utilize `dbt docs generate` and to view the catalog use `dbt docs serve`
 We can create a documentation for our dbt project and also view the lineage graph.
-<img width="713" alt="image" src="https://github.com/user-attachments/assets/a66944a8-1ccb-4538-9db3-1c20c5012a84" />
+http://localhost:8080/#!/overview/dbt_utils?g_v=1
 
 
 ### Macros
